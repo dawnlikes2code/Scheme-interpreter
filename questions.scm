@@ -8,9 +8,14 @@
 ;; Returns a list of two-element lists
 (define (enumerate s)
   ; BEGIN PROBLEM 13
-  'replace-this-line
+  (define (helper lst index)
+    (if (null? lst)
+        '()
+        (cons (list index (car lst))
+              (helper (cdr lst) (+ index 1)))))
+  (helper s 0)
   ; END PROBLEM 13
-  )
+)
 
 
 ;; Problem 14
@@ -34,6 +39,28 @@
 ;; implement solution-code
 (define (solution-code problem solution)
   ; BEGIN PROBLEM 15
-  'replace-this-line
+  (define (enumerate lst)
+  (define (helper lst index)
+    (if (null? lst)
+        '()
+        (cons (list index (car lst))
+              (helper (cdr lst) (+ index 1)))))
+  (helper lst 0))
+  ; END PROBLEM 15
+  )
+;; Problem 16
+(define (merge ordered? lst1 lst2)
+  ; BEGIN PROBLEM 16
+  (cond
+    ((null? lst1) lst2)                         ; if the first list is empty
+    ((null? lst2) lst1)                         ; if the second list is empty
+    ((ordered? (car lst1) (car lst2))          ; if (car lst1) comes first
+     (cons (car lst1)
+           (merge ordered? (cdr lst1) lst2)))
+    (else                                       ; otherwise (car lst2) comes first
+     (cons (car lst2)
+           (merge ordered? lst1 (cdr lst2)))))
+  ; END PROBLEM 16
+)
   ; END PROBLEM 15
   )
